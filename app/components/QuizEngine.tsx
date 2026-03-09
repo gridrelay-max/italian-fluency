@@ -85,10 +85,10 @@ export default function QuizEngine({ setProgress }: any) {
     const newAnswers = [...answers]
     let correctCount = 0
 
-    QUIZ_QUESTIONS.forEach((q, idx) => {
+    QUIZ_QUESTIONS.forEach((q: any, idx) => {
       if (q.type === 'multiple-choice') {
         const selectedIndex = newAnswers[idx]
-        if (selectedIndex !== undefined && q.options[selectedIndex].correct) {
+        if (selectedIndex !== undefined && q.options && q.options[selectedIndex]?.correct) {
           correctCount++
         }
       } else if (q.type === 'fill-blank') {
@@ -144,10 +144,10 @@ export default function QuizEngine({ setProgress }: any) {
         </div>
 
         <div className="space-y-3">
-          {QUIZ_QUESTIONS.map((q, idx) => {
+          {QUIZ_QUESTIONS.map((q: any, idx: number) => {
             let isCorrect = false
             if (q.type === 'multiple-choice') {
-              isCorrect = answers[idx] !== undefined && q.options[answers[idx]].correct
+              isCorrect = answers[idx] !== undefined && q.options && q.options[answers[idx]]?.correct
             } else {
               isCorrect = answers[idx] === q.answer
             }
@@ -199,7 +199,7 @@ export default function QuizEngine({ setProgress }: any) {
 
         {question.type === 'multiple-choice' && (
           <div className="space-y-3 mb-6">
-            {question.options.map((option, idx) => (
+            {(question as any).options?.map((option: any, idx: number) => (
               <button
                 key={idx}
                 onClick={() => handleMultipleChoice(idx)}
