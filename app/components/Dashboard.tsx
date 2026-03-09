@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-export default function Dashboard({ progress, setProgress }: any) {
+export default function Dashboard({ progress }: any) {
   const [dailyDate, setDailyDate] = useState('')
 
   useEffect(() => {
